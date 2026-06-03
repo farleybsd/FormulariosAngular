@@ -1,13 +1,23 @@
-<button class="btn btn-primary" (click)="inputValue.set('Teste')">Aplicar Valor</button>
+<div class="navbar bg-base-100 shadow-sm flex justify-center">
+  <ul class="menu menu-horizontal">
+    @for (item of menu(); track item.title) {
+  <li>
+    <details  class="w-56">
+      <summary>{{item.title}}</summary>
+      <ul>
+        @for (submenu of item.submenus; track submenu.title)
+        {
+         <li><a [routerLink]="submenu.url">{{submenu.title}}</a></li>
+        }
+        </ul>
+    </details>
+  </li>
+}
+</ul>
+</div>
+<div class="flex w-full justify-center p-4">
+  <div class="flex justify-center w-full max-w-3xl">
+     <router-outlet></router-outlet>
+  </div>
+</div>
 
-<input
-  type="text"
-  class="input"
-  [ngModel]="inputValue()"
-  (ngModelChange)="inputValue.set($event)"
-/>
-
-<div class="mt-4">Valor do input: {{ inputValue() }}</div>
-
-
-<app-name [(value)]="inputValue"/>

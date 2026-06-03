@@ -1,36 +1,44 @@
-import { ChangeDetectionStrategy, Component, input, model, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { routes } from './app.routes';
 
+interface MenuItem{
+  title: string;
+  submenus: {
+    title: string;
+    url: string;
+  } []
+}
 
-@Component({
-  selector: 'app-name',
-  imports: [FormsModule],
-  template: `
-           <div>
-            AppName
+function createMenuTitle(route: string) {
 
-            <input
-              class="input"
-              [(ngModel)]="value"
-              placeholder="Enter your name"
-              />
-            </div>
-              `
-})
+  return route.split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+}
 
-export class NameComponent {
+function createMenuItems(routes: Routes): MenuItem[] {
+  return routes.map((route) => {
+    const title = createMenuTitle(route.path!)
 
-  value = model('');
+    const submenus =route.children!.map(childRoute => {
+      const title = createMenuTitle(childRoute.path!)
+      const url = `/${route.path}/${childRoute.path}`
+
+      return { title, url }
+    });
+     return { title, submenus: submenus  }
+  });
 }
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule,NameComponent],
+  imports: [FormsModule,RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
-
-  inputValue = signal('');
+  menu = signal(createMenuItems(routes))
 }
