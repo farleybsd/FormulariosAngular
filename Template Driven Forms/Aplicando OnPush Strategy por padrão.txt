@@ -1,3 +1,13 @@
+"@schematics/angular:component": {
+          "skipTests": true,
+          "type": "component",
+          "addTypeToClassName": false,
+          "changeDetection": "OnPush" 
+        },
+
+App.Component.ts 
+COMO ELE FOI CRIADO JUNTO COM O PROJETO TEM QUE COLOCAR APENAS NELE O ONPUS
+
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
