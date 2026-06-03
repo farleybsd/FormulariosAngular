@@ -1,0 +1,10 @@
+1. Instale o daisyUI como um pacote Node:
+
+npm i -D daisyui@5  
+
+2. Adicione daisyUI ao app.css: (src\styles.css)
+
+@plugin "daisyui";
+
+3. Subir o servidor 
+npm start
