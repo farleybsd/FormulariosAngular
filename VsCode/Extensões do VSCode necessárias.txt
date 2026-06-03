@@ -1,0 +1,17 @@
+​Obrigatório 
+
+https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
+https://marketplace.visualstudio.com/items?itemName=JMGomes.angular-latest-snippets
+https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+
+Obrigatório se estiver no Windows
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+
+Recomendado
+https://marketplace.visualstudio.com/items?itemName=Codeium.codeium
+https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat
+
+Opcional
+https://marketplace.visualstudio.com/items?itemName=BenjaminBenais.copilot-theme
