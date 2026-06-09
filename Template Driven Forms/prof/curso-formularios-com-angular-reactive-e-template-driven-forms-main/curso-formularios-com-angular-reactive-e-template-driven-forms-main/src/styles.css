@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+@plugin "daisyui";
+
+.ng-valid:not(form):not([ngmodelgroup]) {
+  @apply input-success;
+}
+
+.ng-invalid.ng-touched:not(form):not([ngmodelgroup]) {
+  @apply input-error;
+}
+
+.ng-pending {
+  @apply animate-pulse;
+}

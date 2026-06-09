@@ -1,0 +1,12 @@
+<button class="btn btn-primary" (click)="setError()">Aplicar erro</button>
+
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">Page details</legend>
+
+  <label class="label">Nome</label>
+  <input type="text" class="input" placeholder="Digite um nome" [formControl]="nameControl" />
+
+  <app-error-messages [control]="nameControl"></app-error-messages>
+
+  <div>Erros: {{ nameControl.errors | json }}</div>
+</fieldset>
