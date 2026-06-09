@@ -1,1 +1,49 @@
-<p>sync-validators works!</p>
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Palavra que deve ser inclusa</legend>
+  <input
+    type="text"
+    class="input"
+    placeholder="Digite a palavra que deve ser inclusa"
+    [(ngModel)]="includeWord"
+  />
+</fieldset>
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Digite uma frase</legend>
+  <input
+    type="text"
+    class="input"
+    placeholder="Digite uma frase"
+    [(ngModel)]="message"
+    #messageInput="ngModel"
+    required
+    minlength="10"
+    ,
+    [appIncludeWordValidator]="includeWord()"
+  />
+
+  @if (messageInput.touched) {
+    @if (messageInput.hasError('required')) {
+      <p class="text-error">Campo Obrigatório</p>
+    }
+
+    @if (messageInput.hasError('minlength')) {
+      <p class="text-error">
+        Campo deve ter no mínimo {{ messageInput.getError('minlength').requiredLength }} caracteres
+      </p>
+    }
+  }
+</fieldset>
+
+<div class="mt-4">Erros: {{ messageInput.errors | json }}</div>
+
+<div class="mt-4">Mensagem: {{ message() }}</div>
+
+<div class="mt-4 flex">
+  <p class="label">Válido: {{ messageInput.valid }}</p>
+  <p class="label">Inválido: {{ messageInput.invalid }}</p>
+  <p class="label">Está sujo: {{ messageInput.dirty }}</p>
+  <p class="label">Está limpo: {{ messageInput.pristine }}</p>
+  <p class="label">Está tocado: {{ messageInput.touched }}</p>
+  <p class="label">Está desativado: {{ messageInput.disabled }}</p>
+</div>
