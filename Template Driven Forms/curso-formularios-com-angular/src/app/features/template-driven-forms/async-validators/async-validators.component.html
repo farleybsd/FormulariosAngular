@@ -1,0 +1,30 @@
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Nick Name</legend>
+  <input
+  type="text"
+  class="input"
+  [class.input-error]="nicknameModel.touched && nicknameModel.invalid"
+  placeholder="Digite um nick name"
+  [(ngModel)]="nickname"
+  #nicknameModel="ngModel"
+  required
+  appUniqueNickname
+  minlength="6"
+  />
+
+  @if (nicknameModel.touched) {
+
+    @if (nicknameModel.hasError('required')) {
+      <p class="text-error">Campo Obrigatório</p>
+    }
+
+      @if (nicknameModel.hasError('isNicknameTaken')) {
+        <p class="text-error">Nickname já está em uso</p>
+      }
+
+      @if (nicknameModel.hasError('minlength')) {
+        <p class="text-error">Nickname deve ter pelo menos 6 caracteres</p>
+      }
+
+  }
+</fieldset>
