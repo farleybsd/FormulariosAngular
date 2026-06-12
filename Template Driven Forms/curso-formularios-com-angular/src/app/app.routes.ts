@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { routes as templatesDrivenFormsRoutes } from './features/template-driven-forms/sync-validators/routes';
+import { routes as templatesDrivenFormsRoutes } from './features/template-driven-forms/routes';
 export const routes: Routes = [
   {
     path: 'template-driven-forms',
