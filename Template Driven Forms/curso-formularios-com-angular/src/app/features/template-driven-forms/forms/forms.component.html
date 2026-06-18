@@ -1,4 +1,9 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)" [ngFormOptions]="{updateOn: 'blur'}" class="form">
+<form
+#form="ngForm"
+(ngSubmit)="onSubmit(form)"
+ [ngFormOptions]="{updateOn: 'blur'}"
+ class="form"
+ [appIsPasswordEqual]="['password','confirmPassword']">
 <fieldset class="fieldset">
   <legend class="fieldset-legend">Nome</legend>
   <input
@@ -48,9 +53,43 @@
    />
 </fieldset>
 
-<div>
-   Formulário válido: {{ form.value  |json}}
-</div>
+<fieldset ngModelGroup="address" #address="ngModelGroup" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+
+  <legend class="fieldset-legend">Endereço</legend>
+
+  <label class="label">Rua</label>
+  <input
+  type="text"
+  class="input"
+  placeholder="Avenida Paulista"
+  required
+  ngModel
+  name="street"
+   />
+
+  <label class="label">Numero</label>
+  <input
+  type="text"
+  class="input"
+  placeholder="123"
+  required
+  ngModel
+  name="number"
+   />
+
+  <label class="label">Complemento</label>
+  <input
+  type="text"
+  class="input"
+  placeholder="Apartment, suite, etc."
+  ngModel
+  name="complement"
+   />
+</fieldset>
+
+<div>Formulário Erros: {{ form.errors  |json}}</div>
+<div>Formulário válido: {{ form.value  |json}}</div>
+<div>Endereço válido: {{ address.value  |json}}</div>
 <button
  type="submit"
  class="btn btn-primary w-full mt-4"
