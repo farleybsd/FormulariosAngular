@@ -23,7 +23,7 @@ export class UniqueNicknameDirective implements AsyncValidator {
   private uniqueNicknameService = inject(UniqueNicknameService);
 
   validate(control: AbstractControl,): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return timer(500).pipe(
+    return timer(3000).pipe(
       switchMap(() => {
         return this.uniqueNicknameService.checkNickname(control.value).pipe(
           map(({ isTaken }) => {

@@ -2,3 +2,16 @@
 
 @import 'tailwindcss';
 @plugin "daisyui";
+
+
+.ng-pending {
+  @apply animate-pulse;
+}
+
+.ng-valid:not(form):not([ngmodelgroup]) {
+  @apply input-success;
+}
+
+.ng-invalid.ng-touched:not(form):not([ngmodelgroup]) {
+  @apply input-error;
+}

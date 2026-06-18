@@ -1,17 +1,18 @@
 <form
-#form="ngForm"
-(ngSubmit)="onSubmit(form)"
- [ngFormOptions]="{updateOn: 'blur'}"
+ #form="ngForm"
+ (ngSubmit)="onSubmit(form)"
  class="form"
- [appIsPasswordEqual]="['password','confirmPassword']">
+ [appIsPasswordEqual]="['password','confirmPassword']"
+ >
+
 <fieldset class="fieldset">
   <legend class="fieldset-legend">Nome</legend>
   <input
    type="text"
    class="input"
    placeholder="Nome"
+   name="name"
    ngModel
-   [ngModelOptions]="{ name: 'name',standalone: false,updateOn: 'blur' }"
    required
    />
 </fieldset>
@@ -97,3 +98,22 @@
  >Enviar</button>
 
 </form>
+
+
+
+<!-- <form
+#form="ngForm"
+(ngSubmit)="onSubmit(form)"
+ [ngFormOptions]="{updateOn: 'blur'}"
+ class="form"
+ [appIsPasswordEqual]="['password','confirmPassword']"> -->
+
+
+ <!-- <input
+   type="text"
+   class="input"
+   placeholder="Nome"
+   ngModel
+   [ngModelOptions]="{ name: 'name',standalone: false,updateOn: 'blur' }"
+   required
+   /> -->
