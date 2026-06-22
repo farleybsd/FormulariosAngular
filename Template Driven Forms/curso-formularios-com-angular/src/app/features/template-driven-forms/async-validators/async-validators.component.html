@@ -11,8 +11,8 @@
   appUniqueNickname
   minlength="6"
   />
-
-  @if (nicknameModel.touched) {
+<app-error-messages [control]="nicknameModel.control"></app-error-messages>
+  <!-- @if (nicknameModel.touched) {
 
     @if (nicknameModel.hasError('required')) {
       <p class="text-error">Campo Obrigatório</p>
@@ -26,5 +26,5 @@
         <p class="text-error">Nickname deve ter pelo menos 6 caracteres</p>
       }
 
-  }
+  } -->
 </fieldset>

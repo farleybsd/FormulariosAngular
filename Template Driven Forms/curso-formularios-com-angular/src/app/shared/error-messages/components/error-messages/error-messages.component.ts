@@ -5,7 +5,9 @@ import { filter } from 'rxjs';
 const errorMessages: Record<string,(...args:any[]) => string> = {
   required: () => 'Campo Obrigatorio',
   email:    () => 'Email esta invalido',
-  passwordAreNotEqual: ({field1,field2}) => `A senha do campo "${field1}" nao e igual a do campo "${field2}" `
+  passwordAreNotEqual: ({field1,field2}) => `A senha do campo "${field1}" nao e igual a do campo "${field2}" `,
+  isNicknameTaken: () => 'Nickname já está em uso',
+  minlength: ({requiredLength,actualLength}) => `O Valor deve conter no minino ${requiredLength} caracteres (atualmente ${actualLength})`
 }
 
 @Component({
@@ -19,14 +21,17 @@ export class ErrorMessagesComponent implements OnInit {
 
   control = input.required<AbstractControl>();
   currentErrorMessage = signal<string | null>(null);
+  showPendingMessage = signal(false);
 
   ngOnInit(): void {
 
     this.control().events
     .pipe(
-      filter(() => this.control().touched)
+      filter(() => this.control().touched || this.control().dirty)
     )
     .subscribe(() => {
+
+      this.showPendingMessage.set(this.control().pending)
 
       if (this.control().errors === null) {
         this.currentErrorMessage.set(null);
