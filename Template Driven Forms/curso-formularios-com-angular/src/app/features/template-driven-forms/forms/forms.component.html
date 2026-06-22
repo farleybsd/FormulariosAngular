@@ -29,7 +29,9 @@
    ngModel
    required
    email
+   #emailModel="ngModel"
    />
+    <app-error-messages [control]="emailModel.control"></app-error-messages>
 </fieldset>
 
 <fieldset class="fieldset">
@@ -41,7 +43,9 @@
    name="password"
    ngModel
    required
+    #passwordlModel="ngModel"
     />
+    <app-error-messages [control]="passwordlModel.control"></app-error-messages>
 </fieldset>
 
 <fieldset class="fieldset">
@@ -53,7 +57,10 @@
    name="confirmPassword"
    ngModel
    required
+   #confirmPasswordlModel="ngModel"
    />
+    <app-error-messages [control]="confirmPasswordlModel.control"></app-error-messages>
+    <app-error-messages [control]="form.control"></app-error-messages>
 </fieldset>
 
 <fieldset ngModelGroup="address" #address="ngModelGroup" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
@@ -68,7 +75,9 @@
   required
   ngModel
   name="street"
+  #streetModel="ngModel"
    />
+  <app-error-messages [control]="streetModel.control"></app-error-messages>
 
   <label class="label">Numero</label>
   <input
@@ -78,7 +87,9 @@
   required
   ngModel
   name="number"
+  #numberModel="ngModel"
    />
+  <app-error-messages [control]="numberModel.control"></app-error-messages>
 
   <label class="label">Complemento</label>
   <input
@@ -87,7 +98,9 @@
   placeholder="Apartment, suite, etc."
   ngModel
   name="complement"
+  #complementModel="ngModel"
    />
+  <app-error-messages [control]="complementModel.control"></app-error-messages>
 </fieldset>
 
 <div>Formulário Erros: {{ form.errors  |json}}</div>

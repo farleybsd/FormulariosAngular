@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angu
 import { AbstractControl } from '@angular/forms';
 import { filter } from 'rxjs';
 
-const errorMessages: Record<string,string> = {
-  required: 'Campo Obrigatorio',
-  email: 'Email esta invalido'
+const errorMessages: Record<string,(...args:any[]) => string> = {
+  required: () => 'Campo Obrigatorio',
+  email:    () => 'Email esta invalido',
+  passwordAreNotEqual: ({field1,field2}) => `A senha do campo "${field1}" nao e igual a do campo "${field2}" `
 }
 
 @Component({
@@ -33,11 +34,11 @@ export class ErrorMessagesComponent implements OnInit {
       }
 
       for (const key in this.control().errors) {
-        const element = this.control().errors![key];
-        const message = errorMessages[key]
 
-        if(message){
-          this.currentErrorMessage.set(message)
+        const messageFn = errorMessages[key]
+        const errorData = this.control().errors![key];
+        if(messageFn){
+          this.currentErrorMessage.set(messageFn(errorData))
           break;
         }
       }
