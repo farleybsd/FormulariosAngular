@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { filter } from 'rxjs';
 
 const errorMessages: Record<string,string> = {
   required: 'Campo Obrigatorio',
@@ -20,7 +21,12 @@ export class ErrorMessagesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.control().valueChanges.subscribe(() => {
+    this.control().events
+    .pipe(
+      filter(() => this.control().touched)
+    )
+    .subscribe(() => {
+
       if (this.control().errors === null) {
         this.currentErrorMessage.set(null);
         return;
