@@ -2,10 +2,18 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideErrorMessages } from './shared/error-messages/components/error-messages/provide-functions/provide-error-messages.provide';
+import { required } from '@angular/forms/signals';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideRouter(routes),
+    provideErrorMessages({
+      errorMessages: {
+        required : () => 'Required [Custom Message]'
+      },
+      pendingMessage: 'Validation in Progresss 🚨🚨'
+    })
   ]
 };

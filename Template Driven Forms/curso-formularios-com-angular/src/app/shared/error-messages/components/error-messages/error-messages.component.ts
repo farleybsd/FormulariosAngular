@@ -1,14 +1,17 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl } from '@angular/forms';
-import { filter } from 'rxjs';
-
-const errorMessages: Record<string,(...args:any[]) => string> = {
-  required: () => 'Campo Obrigatorio',
-  email:    () => 'Email esta invalido',
-  passwordAreNotEqual: ({field1,field2}) => `A senha do campo "${field1}" nao e igual a do campo "${field2}" `,
-  isNicknameTaken: () => 'Nickname já está em uso',
-  minlength: ({requiredLength,actualLength}) => `O Valor deve conter no minino ${requiredLength} caracteres (atualmente ${actualLength})`
-}
+import { debounceTime, filter } from 'rxjs';
+import { ERROR_MESSAGES } from './tokens/error-messages.component';
+import { ErrorMessageResolverService } from '../../services/error-message-resolver.service';
 
 @Component({
   selector: 'app-error-messages',
@@ -19,34 +22,31 @@ const errorMessages: Record<string,(...args:any[]) => string> = {
 })
 export class ErrorMessagesComponent implements OnInit {
 
+  private destroyRef = inject(DestroyRef);
+  private errorMessageResolverService = inject(ErrorMessageResolverService);
+
   control = input.required<AbstractControl>();
-  currentErrorMessage = signal<string | null>(null);
-  showPendingMessage = signal(false);
+ protected currentErrorMessage = signal<string | null>(null);
+ protected showPendingMessage = signal(false);
+ protected pendingMessage = signal(this.errorMessageResolverService.pendingMessage)
 
   ngOnInit(): void {
+    this.control()
+      .events.pipe(
+        takeUntilDestroyed(this.destroyRef),
+        debounceTime(50),
+        filter(() => this.control().touched || this.control().dirty),
+      )
+      .subscribe(() => {
+        this.showPendingMessage.set(this.control().pending);
 
-    this.control().events
-    .pipe(
-      filter(() => this.control().touched || this.control().dirty)
-    )
-    .subscribe(() => {
-
-      this.showPendingMessage.set(this.control().pending)
-
-      if (this.control().errors === null) {
-        this.currentErrorMessage.set(null);
-        return;
-      }
-
-      for (const key in this.control().errors) {
-
-        const messageFn = errorMessages[key]
-        const errorData = this.control().errors![key];
-        if(messageFn){
-          this.currentErrorMessage.set(messageFn(errorData))
-          break;
+        if (this.control().errors === null) {
+          this.currentErrorMessage.set(null);
+          return;
         }
-      }
-    });
+       const message = this.errorMessageResolverService.getMessage(this.control().errors!)
+       this.currentErrorMessage.set(message)
+
+      });
   }
 }
