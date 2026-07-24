@@ -4,5 +4,23 @@
       "id": 1,
       "nickname": "farley"
     }
+  ],
+  "names" : [
+    {
+      "id": 1,
+      "name": "Farley Rufino"
+    },
+    {
+      "id": 2,
+      "name": "Ricardo Nunes"
+    },
+    {
+      "id": 3,
+      "name": "Joao Silva"
+    },
+    {
+      "id": 4,
+      "name": "Gabriela Santos"
+    }
   ]
 }

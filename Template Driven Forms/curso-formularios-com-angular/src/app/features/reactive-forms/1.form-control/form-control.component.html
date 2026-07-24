@@ -1,12 +1,8 @@
 <button class="btn btn-primary" (click)="reset()">Reset</button>
 <fieldset class="fieldset">
   <legend class="fieldset-legend">Nome:</legend>
-  <input
-  type="text"
-  [formControl]="namecontrol"
-  placeholder="Digite seu nome"
-  class="input"
-  >
+  <input type="text" [formControl]="namecontrol" placeholder="Digite seu nome" class="input">
 </fieldset>
- <p>Valor:{{namecontrol.value | json}}</p>
+<app-error-messages [control]="namecontrol" />
+<p>Valor:{{namecontrol.value | json}}</p>
   <p>Erros:{{namecontrol.errors | json}}</p>
