@@ -1,0 +1,28 @@
+<ng-container [formGroup]="form">
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Nome</legend>
+    <input type="text" class="input w-full" placeholder="Seu nome" formControlName="name" />
+
+    <app-error-messages [control]="form.get('name')!" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Email</legend>
+    <input type="text" class="input w-full" placeholder="email@gmail.com" formControlName="email" />
+
+    <app-error-messages [control]="form.get('email')!" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">CPF</legend>
+    <input type="text" class="input w-full" placeholder="000000000-00" formControlName="cpf" />
+
+    <app-error-messages [control]="form.get('cpf')!" />
+  </fieldset>
+
+  <div class="flex justify-end">
+    <button class="btn btn-primary" appNextStep [disabled]="form.invalid">
+      Próximo passo
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,8 @@
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">{{ label() }}</legend>
+  <input [type]="type()" class="input" [placeholder]="placeholder() || label()" [(ngModel)]="value" />
+
+  @if (control()) {
+    <app-error-messages [control]="control()!" />
+  }
+</fieldset>

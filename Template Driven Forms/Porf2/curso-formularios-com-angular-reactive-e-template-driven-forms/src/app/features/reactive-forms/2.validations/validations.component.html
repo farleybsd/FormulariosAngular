@@ -1,0 +1,92 @@
+<div class="flex gap-2">
+  <div class="flex flex-col">
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <legend class="fieldset-legend">Validações Síncronas</legend>
+      <select class="select" multiple [(ngModel)]="selectedSyncValidations">
+        <option disabled selected>Escolha uma ou mais validações</option>
+        @for (key of syncValidationsKeys(); track key) {
+          <option [value]="key">{{ key }}</option>
+        }
+      </select>
+
+      <button class="btn btn-primary" (click)="addSyncValidators()">Adicionar Validadores</button>
+      <button class="btn btn-primary" (click)="setSyncValidators()">
+        Sobrescrever Validadores
+      </button>
+      <button class="btn btn-primary" (click)="removeSyncValidators()">Remover Validadores</button>
+      <button class="btn btn-primary" (click)="clearSyncValidators()">Limpar Validadores</button>
+      <button class="btn btn-primary" (click)="updateValueAndValidity()">
+        Recalcular Validações
+      </button>
+    </fieldset>
+
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <legend class="fieldset-legend">Existe a validação síncrona?</legend>
+      <select class="select" [(ngModel)]="selectedSyncValidation">
+        <option disabled selected>Escolha uma validação</option>
+        @for (key of syncValidationsKeys(); track key) {
+          <option [value]="key">{{ key }}</option>
+        }
+      </select>
+
+      <button
+        class="btn btn-primary"
+        (click)="checkValidatorExistence()"
+        [disabled]="!selectedSyncValidationFn()"
+      >
+        Verificar validador
+      </button>
+
+      <p>Validator está aplicado? {{ selectedSyncValidatorExists() }}</p>
+    </fieldset>
+  </div>
+  <div class="flex flex-col">
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <legend class="fieldset-legend">Validações Assíncronas</legend>
+      <select class="select" multiple [(ngModel)]="selectedAsyncValidations">
+        <option disabled selected>Escolha uma ou mais validações</option>
+        @for (key of asyncValidationsKeys(); track key) {
+          <option [value]="key">{{ key }}</option>
+        }
+      </select>
+
+      <button class="btn btn-primary" (click)="addAsyncValidators()">Adicionar Validadores</button>
+      <button class="btn btn-primary" (click)="setAsyncValidators()">
+        Sobrescrever Validadores
+      </button>
+      <button class="btn btn-primary" (click)="removeAsyncValidators()">Remover Validadores</button>
+      <button class="btn btn-primary" (click)="clearAsyncValidators()">Limpar Validadores</button>
+      <button class="btn btn-primary" (click)="updateValueAndValidity()">
+        Recalcular Validações
+      </button>
+    </fieldset>
+
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <legend class="fieldset-legend">Existe a validação assíncrona?</legend>
+      <select class="select" [(ngModel)]="selectedAsyncValidation">
+        <option disabled selected>Escolha uma validação</option>
+        @for (key of asyncValidationsKeys(); track key) {
+          <option [value]="key">{{ key }}</option>
+        }
+      </select>
+
+      <button
+        class="btn btn-primary"
+        (click)="checkAsyncValidatorExistence()"
+        [disabled]="!selectedAsyncValidationFn()"
+      >
+        Verificar validador
+      </button>
+
+      <p>Validator está aplicado? {{ selectedAsyncValidatorExists() }}</p>
+    </fieldset>
+  </div>
+</div>
+
+<div class="flex justify-center">
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <legend class="fieldset-legend">Nome</legend>
+    <input type="text" class="input" placeholder="Digite seu nome" [formControl]="name" />
+    <app-error-messages [control]="name" />
+  </fieldset>
+</div>

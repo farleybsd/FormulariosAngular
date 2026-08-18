@@ -1,0 +1,5 @@
+@if (showPendingMessage()) {
+  <p class="text-sm">{{ pendingMessage() }}</p>
+} @else if (currentErrorMessage()) {
+  <p class="text-error">{{ currentErrorMessage() }}</p>
+}

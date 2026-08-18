@@ -1,0 +1,56 @@
+<ng-container [formGroup]="form">
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">CEP</legend>
+    <input type="text" class="input w-full" placeholder="Seu CEP" formControlName="zipcode" />
+
+    <app-error-messages [control]="form.controls.zipcode" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Rua</legend>
+    <input type="text" class="input w-full" placeholder="Sua rua" formControlName="street" />
+
+    <app-error-messages [control]="form.controls.street" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Número</legend>
+    <input type="text" class="input w-full" placeholder="Número" formControlName="number" />
+
+    <app-error-messages [control]="form.controls.number" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Complemento</legend>
+    <input
+      type="text"
+      class="input w-full"
+      placeholder="Complemento"
+      formControlName="complement"
+    />
+
+    <app-error-messages [control]="form.controls.complement" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Cidade</legend>
+    <input type="text" class="input w-full" placeholder="Cidade" formControlName="city" />
+
+    <app-error-messages [control]="form.controls.city" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Estado</legend>
+    <input type="text" class="input w-full" placeholder="Estado" formControlName="state" />
+
+    <app-error-messages [control]="form.controls.state" />
+  </fieldset>
+
+  <div class="flex">
+    <button class="btn btn-primary" routerLink="../personal">Passo anterior</button>
+
+    <button class="btn btn-primary ml-auto" routerLink="../payment" [disabled]="form.invalid">
+      Próximo passo
+    </button>
+  </div>
+</ng-container>

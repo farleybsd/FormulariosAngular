@@ -1,0 +1,16 @@
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">{{ label() }}</legend>
+  <select class="select" [(ngModel)]="value">
+    @if (placeholder()) {
+      <option disabled selected value="">{{ placeholder() }}</option>
+    }
+
+    @for (item of options(); track item) {
+      <option [ngValue]="item.value">{{ item.label }}</option>
+    }
+  </select>
+
+  @if (control()) {
+    <app-error-messages [control]="control()!" />
+  }
+</fieldset>

@@ -1,0 +1,9 @@
+<ul class="steps">
+  @for (step of steps(); track step.label) {
+    <li class="step" [routerLink]="step.route" [class.step-primary]="currentStep() >= step.order">
+      {{ step.label }}
+    </li>
+  }
+</ul>
+
+<router-outlet></router-outlet>

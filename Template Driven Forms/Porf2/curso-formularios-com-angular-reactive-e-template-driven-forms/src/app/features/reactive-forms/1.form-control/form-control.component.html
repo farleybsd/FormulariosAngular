@@ -1,0 +1,11 @@
+<button class="btn btn-primary" (click)="reset()">Resetar</button>
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Nome</legend>
+  <input type="text" class="input" placeholder="Digite seu nome" [formControl]="nameControl" />
+</fieldset>
+
+<app-error-messages [control]="nameControl" />
+
+<p>Valor: {{ nameControl.value | json }}</p>
+<p>Erros: {{ nameControl.errors | json }}</p>

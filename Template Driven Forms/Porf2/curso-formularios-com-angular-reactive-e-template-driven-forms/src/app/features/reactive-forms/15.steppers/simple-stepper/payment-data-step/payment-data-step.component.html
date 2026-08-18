@@ -1,0 +1,35 @@
+<ng-container [formGroup]="form">
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Cartão de Crédito</legend>
+    <input
+      type="text"
+      class="input w-full"
+      placeholder="Número do cartão"
+      formControlName="creditCard"
+    />
+
+    <app-error-messages [control]="form.get('creditCard')!" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Data de Validade</legend>
+    <input type="text" class="input w-full" placeholder="MM/AA" formControlName="expiry" />
+
+    <app-error-messages [control]="form.get('expiry')!" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">CVV</legend>
+    <input type="text" class="input w-full" placeholder="000" formControlName="cvv" />
+
+    <app-error-messages [control]="form.get('cvv')!" />
+  </fieldset>
+
+  <div class="flex">
+    <button class="btn btn-primary" appPreviousStep>Passo anterior</button>
+
+    <button class="btn btn-primary ml-auto" appNextStep [disabled]="form.invalid">
+      Próximo passo
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="savePreferences()">
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <legend class="fieldset-legend">Preferências de Usuário</legend>
+
+    @for (key of preferencesKeys(); track key) {
+      <label class="label">
+        <input type="checkbox" checked="checked" class="toggle toggle-xs" [formControlName]="key" />
+        {{ key | humanizePropKey}}
+      </label>
+    }
+
+    <button class="btn btn-primary btn-xs mt-4" [disabled]="isSaving()">
+      @if (isSaving()) {
+        Salvando...
+      } @else {
+        Salvar
+      }
+    </button>
+  </fieldset>
+
+  <pre>Valores: {{ form.value | json }}</pre>
+</form>

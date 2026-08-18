@@ -1,0 +1,98 @@
+<form
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+  [appIsPasswordEqual]="['password', 'confirmPassword']"
+>
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Nome</legend>
+    <input
+      type="text"
+      class="input"
+      placeholder="Nome"
+      name="name"
+      ngModel
+      #nameModel="ngModel"
+      required=""
+    />
+    <app-error-messages [control]="nameModel.control"></app-error-messages>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Email</legend>
+    <input
+      type="email"
+      class="input"
+      placeholder="Email"
+      name="email"
+      ngModel
+      #emailModel="ngModel"
+      required
+      email=""
+    />
+    <app-error-messages [control]="emailModel.control"></app-error-messages>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Senha</legend>
+    <input
+      type="password"
+      class="input"
+      placeholder="Senha"
+      name="password"
+      #passwordModel="ngModel"
+      ngModel
+      required
+    />
+    <app-error-messages [control]="passwordModel.control"></app-error-messages>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Confirme a senha</legend>
+    <input
+      type="password"
+      class="input"
+      placeholder="Confirme a senha"
+      name="confirmPassword"
+      #confirmPasswordModel="ngModel"
+      ngModel
+      required
+    />
+    <app-error-messages [control]="confirmPasswordModel.control"></app-error-messages>
+    <app-error-messages [control]="form.control"></app-error-messages>
+  </fieldset>
+
+  <fieldset
+    ngModelGroup="address"
+    #address="ngModelGroup"
+    class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+  >
+    <legend class="fieldset-legend">Endereço</legend>
+
+    <label class="label">Rua</label>
+    <input
+      type="text"
+      class="input"
+      placeholder="Av. Paulista"
+      required
+      ngModel
+      #streetModel="ngModel"
+      name="street"
+    />
+    <app-error-messages [control]="streetModel.control"></app-error-messages>
+
+    <label class="label">Número</label>
+    <input type="text" class="input" placeholder="123" required ngModel #numberModel="ngModel" name="number" />
+    <app-error-messages [control]="numberModel.control"></app-error-messages>
+
+    <label class="label">Complemento</label>
+    <input type="text" class="input" placeholder="Apto 123" ngModel #complementModel="ngModel" name="complement" />
+    <app-error-messages [control]="complementModel.control"></app-error-messages>
+  </fieldset>
+
+  <div>Form Errors: {{ form.errors | json }}</div>
+
+  <div>Form Value: {{ form.value | json }}</div>
+  <div>Address Value: {{ address.value | json }}</div>
+
+  <button type="submit" class="btn btn-primary w-full mt-4" [disabled]="">Enviar</button>
+</form>

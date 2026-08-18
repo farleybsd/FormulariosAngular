@@ -1,0 +1,47 @@
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">Reactive Forms</legend>
+
+  <div class="flex gap-2">
+    <button class="btn btn-primary btn-xs" (click)="toggle(tags)">
+      @if (tags.enabled) {
+        Desabilitar
+      } @else {
+        Habilitar
+      }
+    </button>
+
+    <button class="btn btn-primary btn-xs" (click)="setValue(tags)">Set Value</button>
+    <button class="btn btn-primary btn-xs" (click)="markasTouched(tags)">Mark As Touched</button>
+  </div>
+
+  <app-tags [formControl]="tags" />
+
+  <div>
+    <pre>value: {{ tags.value | json }}</pre>
+    <pre>touched: {{ tags.touched }}</pre>
+  </div>
+</fieldset>
+
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">NgModel</legend>
+
+  <div class="flex gap-2">
+    <button class="btn btn-primary btn-xs" (click)="toggle(model.control)">
+      @if (tags.enabled) {
+        Desabilitar
+      } @else {
+        Habilitar
+      }
+    </button>
+
+     <button class="btn btn-primary btn-xs" (click)="setValue(model.control)">Set Value</button>
+    <button class="btn btn-primary btn-xs" (click)="markasTouched(model.control)">Mark As Touched</button>
+  </div>
+
+  <app-tags [(ngModel)]="tagsWithNgModel" #model="ngModel" />
+
+  <div>
+    <pre>value: {{ model.value | json }}</pre>
+    <pre>touched: {{ model.touched }}</pre>
+  </div>
+</fieldset>

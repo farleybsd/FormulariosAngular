@@ -1,0 +1,28 @@
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">Nome</legend>
+  <input type="text" class="input" placeholder="Digite um nome" [formControl]="nameControl" />
+
+  <button class="btn btn-primary" (click)="markAsTouched()">Marcar como tocado</button>
+  <button class="btn btn-primary" (click)="markAsUntouched()">Marcar como não tocado</button>
+  <button class="btn btn-primary" (click)="markAsDirty()">Marcar como sujo</button>
+  <button class="btn btn-primary" (click)="markAsPristine()">Marcar como limpo</button>
+  <button class="btn btn-primary" (click)="markAsPending()">Marcar como pendente</button>
+
+  <div>
+    <div>
+      Limpo: {{ nameControl.pristine }}
+    </div>
+    <div>
+      Tocado: {{ nameControl.touched }}
+    </div>
+    <div>
+      Não Tocado: {{ nameControl.untouched }}
+    </div>
+    <div>
+      Sujo: {{ nameControl.dirty }}
+    </div>
+    <div>
+      Pendente: {{ nameControl.pending }}
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+  <button class="btn btn-primary" (click)="form.reset()">Resetar</button>
+
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <legend class="fieldset-legend">Dados pessoais</legend>
+
+    <label class="label">Nome</label>
+    <input type="text" class="input" formControlName="name" />
+    <app-error-messages [control]="form.controls.name" />
+
+    <label class="label">Email</label>
+    <input type="email" class="input" formControlName="email" />
+    <app-error-messages [control]="form.controls.email" />
+  </fieldset>
+
+  <fieldset
+    class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+    formGroupName="address"
+  >
+    <legend class="fieldset-legend">Endereço</legend>
+
+    <label class="label">Rua</label>
+    <input type="text" class="input" formControlName="street" />
+    <app-error-messages [control]="form.controls.address.controls.street" />
+
+    <label class="label">Número</label>
+    <input type="text" class="input" formControlName="number" />
+    <app-error-messages [control]="form.controls.address.controls.number" />
+
+    <label class="label">Cidade</label>
+    <input type="text" class="input" formControlName="city" />
+    <app-error-messages [control]="form.controls.address.controls.city" />
+
+    <label class="label">Estado</label>
+    <input type="text" class="input" formControlName="state" />
+    <app-error-messages [control]="form.controls.address.controls.state" />
+  </fieldset>
+
+  <div>
+    formValue
+    <pre
+      >{{ form.value | json }}
+    </pre>
+  </div>
+</form>

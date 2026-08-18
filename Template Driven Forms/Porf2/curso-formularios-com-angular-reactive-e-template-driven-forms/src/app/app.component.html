@@ -1,0 +1,24 @@
+<div class="navbar bg-base-100 shadow-sm flex justify-center">
+  <ul class="menu menu-horizontal z-50">
+    @for (item of menu(); track item.title) {
+      <li>
+        <details class="w-56">
+          <summary>{{ item.title }}</summary>
+          <ul>
+            @for (submenu of item.submenus; track submenu.title) {
+              <li>
+                <a [routerLink]="submenu.url">{{ submenu.title }}</a>
+              </li>
+            }
+          </ul>
+        </details>
+      </li>
+    }
+  </ul>
+</div>
+
+<div class="w-full flex justify-center p-4">
+  <div class="flex justify-center w-full max-w-3xl">
+    <router-outlet></router-outlet>
+  </div>
+</div>

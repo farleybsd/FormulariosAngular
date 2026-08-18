@@ -1,0 +1,13 @@
+<ul class="steps">
+  @for (step of steps(); track step.label) {
+    <li class="step" [class.step-primary]="currentStep() >= $index + 1">{{ step.label }}</li>
+  }
+</ul>
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="w-full max-w-sm mx-auto mt-8">
+  <ng-container *ngComponentOutlet="currentStepComponent()"></ng-container>
+</form>
+
+<!-- <pre>
+  {{ form.value | json }}
+</pre> -->

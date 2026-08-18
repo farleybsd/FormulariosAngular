@@ -1,0 +1,12 @@
+<div class="flex gap-2">
+  <button class="btn btn-primary" (click)="createFormControl()">Criar FormControl</button>
+  <button class="btn btn-primary" (click)="createFormGroup()">Criar FormGroup</button>
+  <button class="btn btn-primary" (click)="createFormRecord()">Criar FormRecord</button>
+  <button class="btn btn-primary" (click)="createFormArray()">Criar FormArray</button>
+</div>
+
+<div>
+  <pre>
+    {{ verification() | json }}
+  </pre>
+</div>

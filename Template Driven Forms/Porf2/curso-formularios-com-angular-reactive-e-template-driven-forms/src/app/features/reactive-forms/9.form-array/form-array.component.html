@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Nome</legend>
+    <input type="text" class="input" placeholder="Digite o nome" formControlName="name" />
+    <app-error-messages [control]="form.controls.name"></app-error-messages>
+  </fieldset>
+
+  <fieldset class="fieldset" formArrayName="emails">
+    <legend class="fieldset-legend">Emails</legend>
+
+    @for (item of form.controls.emails.controls; track item) {
+      <div class="join">
+        <div>
+          <div>
+            <input class="input join-item" placeholder="Digite o nome" [formControlName]="$index" />
+            <app-error-messages [control]="item"></app-error-messages>
+          </div>
+        </div>
+
+        @if (form.controls.emails.controls.length > 1) {
+          <button class="btn btn-error join-item" (click)="removeEmail($index)">Remover</button>
+        }
+      </div>
+
+      <div class="flex gap-2 justify-end">
+        @if (!$first) {
+          <button class="btn btn-primary btn-outline btn-xs" (click)="moveUp($index)">Mover para cima</button>
+        }
+
+        @if (!$last) {
+          <button class="btn btn-primary btn-outline btn-xs" (click)="moveDown($index)">Mover para baixo</button>
+        }
+      </div>
+    }
+
+    <button class="btn btn-primary btn-xs" (click)="addEmail()">Adicionar email</button>
+
+    <app-error-messages [control]="form.controls.emails"></app-error-messages>
+  </fieldset>
+
+  <button class="btn btn-primary" [disabled]="form.invalid">Salvar</button>
+
+  <div>
+    <pre>
+      Valores: {{ form.value | json }}
+    </pre>
+  </div>
+</form>

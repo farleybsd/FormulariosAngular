@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="createNewField()">
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <legend class="fieldset-legend">Novo campo</legend>
+
+    <label class="label">Nome campo</label>
+    <input
+      type="email"
+      class="input"
+      placeholder="Nome do campo (sem espaços)"
+      formControlName="fieldName"
+    />
+    <app-error-messages [control]="form.controls.fieldName" />
+
+    <label class="label">Valor inicial</label>
+    <input type="text" class="input" placeholder="Valor inicial" formControlName="initialValue" />
+    <app-error-messages [control]="form.controls.initialValue" />
+
+    <label class="label mt-2">
+      <input type="checkbox" checked="checked" class="checkbox" formControlName="isRequired" />
+      É obrigatório
+    </label>
+    <app-error-messages [control]="form.controls.isRequired" />
+
+    <button class="btn btn-neutral mt-4" [disabled]="form.invalid">Criar campo</button>
+  </fieldset>
+</form>
+
+<form [formGroup]="previewForm">
+  <ul class="list bg-base-100 rounded-box shadow-md">
+    @for (item of previewForm.controls | keyvalue; track item.key) {
+      <li class="list-row items-center">
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+          <legend class="fieldset-legend">{{ item.key }}</legend>
+          <input type="text" class="input" [formControlName]="item.key" />
+          <app-error-messages [control]="previewForm.get(item.key)!" />
+        </fieldset>
+
+        <button class="btn btn-error" (click)="removeField(item.key)">Remover</button>
+      </li>
+    }
+  </ul>
+</form>

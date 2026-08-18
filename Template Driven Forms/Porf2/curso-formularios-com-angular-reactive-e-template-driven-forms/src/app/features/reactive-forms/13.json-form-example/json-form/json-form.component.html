@@ -1,0 +1,51 @@
+<form [formGroup]="form()" (ngSubmit)="submit()">
+  @for (field of fields(); track field.name) {
+    @switch (field.type) {
+      @case (fieldType.Text) {
+        <app-input-field
+          [label]="field.label"
+          [placeholder]="field.placeholder"
+          type="text"
+          [formControlName]="field.name"
+        />
+      }
+
+      @case (fieldType.Email) {
+        <app-input-field
+          [label]="field.label"
+          [placeholder]="field.placeholder"
+          type="email"
+          [formControlName]="field.name"
+        />
+      }
+
+      @case (fieldType.Password) {
+        <app-input-field
+          [label]="field.label"
+          [placeholder]="field.placeholder"
+          type="password"
+          [formControlName]="field.name"
+        />
+      }
+
+      @case (fieldType.Select) {
+        <app-select-field
+          [label]="field.label"
+          [placeholder]="field.placeholder"
+          [options]="field.options"
+          [formControlName]="field.name"
+        />
+      }
+    }
+  }
+
+  <button class="btn btn-primary" type="submit" [disabled]="form().invalid">
+    {{ submitLabel() }}
+  </button>
+
+  <app-error-messages [control]="form()" />
+
+  <pre>
+    {{ form().value | json }}
+  </pre>
+</form>
