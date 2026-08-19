@@ -1,0 +1,2 @@
+Criando componente sem precisar criar uma pasta com paramentro --fdlat
+npx ng g c features\reactive-forms/4.set-erros/set-erros --flat
