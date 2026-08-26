@@ -4,12 +4,21 @@
     <label class="label">Nome</label>
     <input type="text" class="input" placeholder="Seu Nome" formControlName="name" />
     <app-error-messages [control]="form.controls.name" />
+    <button class="btn btn-primary btn-outline btn-xs" (click)="clearField()">Limpar</button>
     <label class="label">Email</label>
     <input type="email" class="input" placeholder="seuemail@seudominio.com.br" formControlName="email" />
     <app-error-messages [control]="form.controls.email" />
-    <button class="btn btn-primary mt-4">Salvar</button>
-    <div>
-      Valores: {{ form.value | json }}
-    </div>
+    <button class="btn btn-primary btn-outline btn-xs" (click)="toggle()">
+      @if (form.controls.email.disabled){
+      Habilitar
+      } @else {
+      Desabilitar
+      }
+    </button>
+    <button class="btn btn-primary mt-4" [disabled]="!form.invalid">Salvar</button>
+    <pre>email.valueChanges: {{ form.controls.email.valueChanges| async | json }}</pre>
+      <pre>email.statusChanges: {{ form.controls.email.statusChanges| async | json }}</pre>
+    <pre>Valores: {{ form.value | json }}</pre>
+    <pre>Valores brutos: {{ form.getRawValue() | json }}</pre>
   </fieldset>
 </form>
