@@ -8,6 +8,7 @@ export const errorMessages: TErrorMessages['errorMessages'] = {
   minlength: ({requiredLength,actualLength}) => `O Valor deve conter no minino ${requiredLength} caracteres (atualmente ${actualLength})`,
   invalidMaxNames: ({maxQuantity, currentQuantity}) => `Quantidade maxima de nomes (${maxQuantity}) (atualmente ${currentQuantity})`,
   invalidFullName: () => 'Digite seu nome completo',
+  fieldnameExists: () => 'Esse campo já existe',
 };
 
 export const pendingMessage = 'Validando...';

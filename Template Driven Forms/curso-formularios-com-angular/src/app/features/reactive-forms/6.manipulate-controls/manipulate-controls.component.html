@@ -1,0 +1,34 @@
+<form [formGroup]="form" (ngSubmit)="createNewField()">
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <legend class="fieldset-legend">Novo Campo</legend>
+
+    <label class="label">Nome Campo</label>
+    <input type="text" class="input" placeholder="Nome do Campo (sem espacos)" formControlName="fieldName" />
+    <app-error-messages [control]="form.controls.fieldName"></app-error-messages>
+    <label class="label">Valor Inicial</label>
+    <input type="text" class="input" placeholder="Valor Inicial" formControlName="initialValue" />
+    <app-error-messages [control]="form.controls.initialValue"></app-error-messages>
+
+    <label class="label mt-2">
+      <input type="checkbox" checked="checked" class="checkbox" formControlName="isRequired" />
+      E obrigatorio?
+    </label>
+     <app-error-messages [control]="form.controls.isRequired"></app-error-messages>
+    <button class="btn btn-neutral mt-4" [disabled]="form.invalid">Criar Campo</button>
+  </fieldset>
+</form>
+
+<form [formGroup]="previewForm">
+  <ul class="list bg-base-100 rounded-box shadow-md">
+    @for (item of previewForm.controls | keyvalue; track item.key) {
+    <li class="list-row items-center justify-between">
+      <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+        <legend class="fieldset-legend">{{item.key}}</legend>
+        <input type="text" class="input" [formControlName]="item.key" />
+        <app-error-messages [control]="previewForm.get(item.key)!"></app-error-messages>
+      </fieldset>
+      <button class="btn btn-error" (click)="removeField(item.key)">Remover</button>
+    </li>
+    }
+  </ul>
+</form>
