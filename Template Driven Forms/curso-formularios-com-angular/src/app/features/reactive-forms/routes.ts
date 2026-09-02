@@ -5,6 +5,8 @@ import { UsingMarkFuncionsComponent } from './3.using-mark-funcions/using-mark-f
 import { SetErrosComponent } from './4.set-erros/set-erros.component';
 import { FormGroupComponent } from './5.form-group/form-group.component';
 import { ManipulateControlsComponent } from './6.manipulate-controls/manipulate-controls.component';
+import { FormRecordComponent } from './7.form-record/form-record.component';
+
 
 export const reactiveFormsRoutes: Routes = [
   {
@@ -13,23 +15,26 @@ export const reactiveFormsRoutes: Routes = [
   },
   {
     path: 'validations',
-    component: ValidationsComponent
+    component: ValidationsComponent,
   },
-   {
+  {
     path: 'using-mark-funcions',
-    component: UsingMarkFuncionsComponent
+    component: UsingMarkFuncionsComponent,
   },
   {
     path: 'set-erros',
-    component: SetErrosComponent
+    component: SetErrosComponent,
   },
   {
     path: 'form-group',
-    component: FormGroupComponent
+    component: FormGroupComponent,
   },
   {
     path: 'manipulate-controls',
-    component: ManipulateControlsComponent
+    component: ManipulateControlsComponent,
+  },
+  {
+    path: 'form-record',
+    component: FormRecordComponent,
   },
 ];
-

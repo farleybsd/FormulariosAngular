@@ -1,26 +1,33 @@
 {
-  "nicknames" : [
+  "user-preferences": {
+    "receiveEmails": false,
+    "receivePushNotifications": false,
+    "receiveTextMessages": false,
+    "showPhoneOnProfile": false
+  },
+  "nicknames": [
     {
-      "id": 1,
+      "id": "1",
       "nickname": "farley"
     }
   ],
-  "names" : [
+  "names": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Farley Rufino"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Ricardo Nunes"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Joao Silva"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Gabriela Santos"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
