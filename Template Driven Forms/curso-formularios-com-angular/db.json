@@ -1,4 +1,12 @@
 {
+  "user-emails": {
+    "name": "Henrique 2",
+    "emails": [
+      "teste1@gmail.com",
+      "teste3@gmail.com",
+      "teste2@gmail.com"
+    ]
+  },
   "user-preferences": {
     "receiveEmails": false,
     "receivePushNotifications": false,
@@ -8,24 +16,20 @@
   "nicknames": [
     {
       "id": "1",
-      "nickname": "farley"
+      "nickname": "henriquecustodia"
     }
   ],
   "names": [
     {
       "id": "1",
-      "name": "Farley Rufino"
-    },
-    {
-      "id": "2",
       "name": "Ricardo Nunes"
     },
     {
-      "id": "3",
-      "name": "Joao Silva"
+      "id": "2",
+      "name": "João Silva"
     },
     {
-      "id": "4",
+      "id": "3",
       "name": "Gabriela Santos"
     }
   ],

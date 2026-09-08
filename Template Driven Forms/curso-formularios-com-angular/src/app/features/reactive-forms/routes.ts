@@ -7,6 +7,8 @@ import { FormGroupComponent } from './5.form-group/form-group.component';
 import { ManipulateControlsComponent } from './6.manipulate-controls/manipulate-controls.component';
 import { FormRecordComponent } from './7.form-record/form-record.component';
 import { SubFormsComponent } from './8.sub-forms/sub-forms.component';
+import { FormArrayComponent } from './9.form-array/form-array.component';
+import { getUserEmailsResolver } from './9.form-array/resolvers/get-user-emails.resolver';
 
 
 export const reactiveFormsRoutes: Routes = [
@@ -41,5 +43,12 @@ export const reactiveFormsRoutes: Routes = [
   {
     path: 'sub-forms',
     component: SubFormsComponent,
+  },
+   {
+    path: 'form-array',
+    component: FormArrayComponent,
+    resolve: {
+      userEmails: getUserEmailsResolver,
+    },
   },
 ];
