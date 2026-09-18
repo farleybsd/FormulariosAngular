@@ -11,6 +11,7 @@ import { FormArrayComponent } from './9.form-array/form-array.component';
 import { getUserEmailsResolver } from './9.form-array/resolvers/get-user-emails.resolver';
 import { UtilityFunctionsComponent } from './10.utility-functions/utility-functions.component';
 import { FormBuilderComponent } from './11.form-builder/form-builder.component';
+import { ControlValueAcessorComponent } from './12.control-value-acessor/control-value-acessor.component';
 
 export const reactiveFormsRoutes: Routes = [
   {
@@ -55,8 +56,13 @@ export const reactiveFormsRoutes: Routes = [
   {
     path: 'utility-functions',
     component: UtilityFunctionsComponent,
-  },{
+  },
+  {
     path: 'form-builder',
     component: FormBuilderComponent,
-  }
+  },
+  {
+    path: 'acessor-values',
+    component: ControlValueAcessorComponent,
+  },
 ];
