@@ -1,1 +1,28 @@
-<p>tags works!</p>
+<div class="join">
+  <input
+  class="input input-xs join-item"
+  placeholder="Digite uma tag..."
+  [(ngModel)]="newTag"
+  (blur)="onTouchedFn()"
+  [disabled]="isDisabled()"
+  />
+  <button
+  class="btn btn-xs join-item rounded-r-full"
+  (click)="addTag(); onTouchedFn();"
+  [disabled]="isDisabled()"
+  >Adicionar</button>
+</div>
+<div class="flex gap-2 flex-wrap mt-2">
+  @for ( tag of tags(); track tag ) {
+    <div class="join">
+      <div class="join-item badge ">{{ tag }}</div>
+      <button
+      class=" join-item btn btn-soft btn-primary btn-xs "
+      [class]=" isDisabled() ? 'badge-ghost' :'badge-soft badge-primary'"
+      (click)="removeTag(tag)"
+      [disabled]="isDisabled()"
+      >X</button>
+    </div>
+
+  }
+</div>

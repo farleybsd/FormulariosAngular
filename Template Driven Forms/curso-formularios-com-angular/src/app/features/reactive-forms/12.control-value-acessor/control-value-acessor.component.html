@@ -1,1 +1,42 @@
-<p>control-value-acessor works!</p>
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">Reactive Form</legend>
+
+<app-tags [formControl]="tags" />
+<div class="flex  gap-2">
+  <button class="btn btn-primary btn-xs" (click)="toggle()">
+  @if( tags.enabled ) {
+  Desabilitar
+  } @else {
+  Habilitar
+  }
+</button>
+<button class="btn btn-primary btn-xs" (click)="setValues(tags)">Setar Valores</button>
+<button class="btn btn-primary btn-xs" (click)="markAsTouched(tags)">Marcar como Tocado</button>
+</div>
+<div>
+  <pre> Valores: {{ tags.value | json }}</pre>
+   <pre> Tocado:{{ tags.touched | json }}</pre>
+</div>
+</fieldset>
+
+
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">NgModel Form</legend>
+
+<app-tags [(ngModel)]="tagsWithNgModel" #model="ngModel" />
+<div class="flex  gap-2">
+  <button class="btn btn-primary btn-xs" (click)="toggle()">
+  @if( tags.enabled ) {
+  Desabilitar
+  } @else {
+  Habilitar
+  }
+</button>
+<button class="btn btn-primary btn-xs" (click)="setValues(model.control)">Setar Valores</button>
+<button class="btn btn-primary btn-xs" (click)="markAsTouched(model.control)">Marcar como Tocado</button>
+</div>
+<div>
+  <pre> Valores: {{ model.value | json }}</pre>
+   <pre> Tocado:{{ model.touched | json }}</pre>
+</div>
+</fieldset>

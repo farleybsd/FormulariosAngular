@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, forwardRef, signal } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-tags',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,22 +12,42 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TagsComponent),
       multi: true,
-    }
+    },
   ],
 })
 export class TagsComponent implements ControlValueAccessor {
+  private changeFn = (tags: string[]) => {};
+  protected onTouchedFn = () => {};
+  protected isDisabled = signal(false);
 
-  writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
+  protected addTag() {
+    const tag = this.newTag().trim();
+    this.tags.update((tags) => [...tags, tag]);
+    this.changeFn(this.tags());
+    this.newTag.set('');
   }
-  registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
+  protected removeTag(tag: string) {
+    this.tags.update((tags) => tags.filter((t) => t !== tag));
+    this.changeFn(this.tags());
+  }
+
+  protected tags = signal<string[]>([]);
+  protected newTag = signal('');
+
+  writeValue(value: string[]): void {
+    if (!Array.isArray(value)) {
+      this.tags.set([]);
+    } else {
+      this.tags.set(value);
+    }
+  }
+  registerOnChange(fn: (tags: string[]) => void): void {
+    this.changeFn = fn;
   }
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.onTouchedFn = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.isDisabled.set(isDisabled);
   }
-
 }
