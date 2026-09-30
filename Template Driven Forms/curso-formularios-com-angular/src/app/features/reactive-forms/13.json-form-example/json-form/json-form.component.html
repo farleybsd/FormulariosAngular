@@ -1,0 +1,55 @@
+<form [formGroup]="form()" (ngSubmit)="submit()">
+  @for (field of fields(); track field.name) {
+  @switch (field.type) {
+  @case (fieldType.Text) {
+  <app-input-field [label]="field.label" [placeholder]="field.placeholder" type="text" [formControlName]="field.name" />
+  <!-- <fieldset class="fieldset">
+    <legend class="fieldset-legend">{{ field.label }}</legend>
+    <input type="text" class="input" [placeholder]="field.placeholder || field.label" [formControlName]="field.name" />
+    <app-error-messages [control]="form().get(field.name)!"></app-error-messages>
+  </fieldset> -->
+  }
+  @case (fieldType.Email) {
+  <app-input-field [label]="field.label" [placeholder]="field.placeholder" type="email"
+    [formControlName]="field.name" />
+  <!-- <fieldset class="fieldset">
+    <legend class="fieldset-legend">{{ field.label }}</legend>
+    <input type="email" class="input" [placeholder]="field.placeholder || field.label" [formControlName]="field.name" />
+    <app-error-messages [control]="form().get(field.name)!"></app-error-messages>
+  </fieldset> -->
+  }
+
+  @case (fieldType.Password) {
+  <app-input-field [label]="field.label" [placeholder]="field.placeholder" type="password"
+    [formControlName]="field.name" />
+  <!-- <fieldset class="fieldset">
+    <legend class="fieldset-legend">{{ field.label }}</legend>
+    <input type="password" class="input" [placeholder]="field.placeholder || field.label" [formControlName]="field.name" />
+    <app-error-messages [control]="form().get(field.name)!"></app-error-messages>
+  </fieldset> -->
+  }
+  @case (fieldType.Select) {
+    <app-select-field
+    [label]="field.label" [placeholder]="field.placeholder" [options]="field.options"
+    [formControlName]="field.name"
+    />
+  <!-- <fieldset class="fieldset">
+    <legend class="fieldset-legend">{{ field.label }}</legend>
+    <select class="select" [formControlName]="field.name">
+      @if(field.placeholder){
+      <option [ngValue]="null" disabled>{{ field.placeholder }}</option>
+      }
+
+      @for (item of field.options; track item.value) {
+      <option [ngValue]="item.value">{{ item.label }}</option>
+      }
+    </select>
+    <app-error-messages [control]="form().get(field.name)!"></app-error-messages>
+  </fieldset> -->
+  }
+  }
+  }
+  <button class="btn btn-primary" [disabled]="form().invalid">{{submiteLabel()}}</button>
+  <app-error-messages [control]="form()"></app-error-messages>
+  <pre>{{form().value | json}}</pre>
+</form>
