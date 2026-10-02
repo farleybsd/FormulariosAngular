@@ -1,0 +1,15 @@
+<ng-container [formGroup]="form">
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">Dados Pessoais</legend>
+
+  <label class="label">Name</label>
+  <input type="text" class="input" placeholder="Seu nome" formControlName="name" />
+
+  <label class="label">Email</label>
+  <input type="text" class="input" placeholder="Seu email" formControlName="email" />
+
+  <label class="label">Data de Nascimento</label>
+  <input type="date" class="input" placeholder="Data de Nascimento" formControlName="birthDate" />
+</fieldset>
+</ng-container>
+

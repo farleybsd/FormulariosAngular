@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <app-personal-data />
+  <app-payment-data />
+  <button class="btn btn-primary">Salvar</button>
+</form>
+
+<pre>Form Value: {{ form.value | json }}</pre>
