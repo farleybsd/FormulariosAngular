@@ -15,6 +15,7 @@ import { ControlValueAcessorComponent } from './12.control-value-acessor/control
 import { JsonFormExampleComponent } from './13.json-form-example/json-form-example.component';
 import { ControlContainerComponent } from './14.control-container/control-container.component';
 import { SimleStepperComponent } from './15.steppers/simle-stepper/simle-stepper.component';
+import { routes as routerStepperRoutes } from './15.steppers/router-stepper/routes';
 
 export const reactiveFormsRoutes: Routes = [
   {
@@ -80,6 +81,8 @@ export const reactiveFormsRoutes: Routes = [
     path: 'stepper',
     component: SimleStepperComponent,
   },
+  {
+    path: 'router-stepper',
+    children: routerStepperRoutes
+  },
 ];
-
-;

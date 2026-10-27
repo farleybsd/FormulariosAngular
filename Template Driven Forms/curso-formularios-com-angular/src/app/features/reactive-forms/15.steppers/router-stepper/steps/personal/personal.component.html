@@ -1,0 +1,24 @@
+<ng-container [formGroup]="form">
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Nome</legend>
+    <input type="text" class="input w-full" placeholder="Seu nome" formControlName="name" />
+    <app-error-messages [control]="form.controls.name" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Email</legend>
+    <input type="text" class="input w-full" placeholder="Seu email" formControlName="email" />
+    <app-error-messages [control]="form.controls.email" />
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Cpf</legend>
+    <input type="text" class="input w-full" placeholder="Seu cpf" formControlName="cpf" />
+    <app-error-messages [control]="form.controls.cpf" />
+  </fieldset>
+  <div class="flex justify-end">
+    <button class="btn btn-primary" routeLink="../personal" [disabled]="form.invalid">Próximo Passo</button>
+
+  </div>
+</ng-container>
+
