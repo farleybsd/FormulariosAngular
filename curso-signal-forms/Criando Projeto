@@ -1,0 +1,2 @@
+ng new curso-signal-forms --skip-tests --file-name-style-guide 2016
+--file-name-style-guide 2016 para manter os sufixos do angular services componenets e etec ..
