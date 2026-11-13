@@ -1,23 +1,27 @@
-<div class="flex flex-col items-center p-8">
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Nome</legend>
-    <input type="text" class="input" placeholder="Digite seu nome" [formField]="form.name" />
-    <div>Dirty: {{ form.name().dirty() }}</div>
-    <div>Dirty: {{ form.name().touched() }}</div>
-  </fieldset>
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Email</legend>
-    <input type="email" class="input" placeholder="Digite seu email" [formField]="form.email">
-    <div>Dirty: {{ form.email().dirty() }}</div>
-    <div>Dirty: {{ form.email().touched() }}</div>
-  </fieldset>
-  <button class="btn btn-primary" (click)="setValue()">Set Data</button>
-  <button class="btn btn-primary" (click)="reset()">Reset</button>
-  <pre>{{ form().value() | json }}</pre>
-  <div>
-    Form Value: {{ form().value() | json }}
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start">
+    <a class="btn btn-ghost text-xl">Curso Signal Forms</a>
   </div>
-  <div>
-    Form Model: {{ formModel() | json }}
+  <div class="navbar-center">
+  <ul class="menu menu-horizontal bg-base-200 rounded-box max-w-50 w-full z-50">
+    <li>
+      <details class="w-56">
+        <summary>Casos de Uso</summary>
+        <ul>
+          @for ( item of menuItems() ; track item.route ) {
+            <li><a [routerLink]="item.route">{{item.label}}</a></li>
+          }
+        </ul>
+      </details>
+    </li>
+  </ul>
+  </div>
+  <div class="navbar-end">
+    <a class="btn">Get started</a>
+
   </div>
 </div>
+<div class="flex flex-col items-center p-8">
+<router-outlet></router-outlet>
+</div>
+

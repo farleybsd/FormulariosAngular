@@ -1,0 +1,60 @@
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Apelido</legend>
+  <input type="text" class="input" [formField]="$any(form.nickname)" />
+{{form.nickname().value() |json}}
+</fieldset>
+
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Idade</legend>
+  <input type="number" class="input" [formField]="form.age" />
+{{form.age().value() |json}}
+</fieldset>
+
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Data</legend>
+  <input type="date" class="input" [formField]="form.date" />
+{{form.date().value()}}
+</fieldset>
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Hora</legend>
+  <input type="time" class="input" [formField]="form.time" />
+{{form.time().value()}}
+</fieldset>
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Data e Hora</legend>
+  <input type="datetime-local" class="input" [formField]="form.datetime" />
+{{form.datetime().value()}}
+{{datetimeIso()}}
+</fieldset>
+
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Tema</legend>
+  <select class="select" [formField]="form.theme">
+    <option disabled selected value="">Esolha um Tema</option>
+    @for (theme of themeOptions(); track theme) {
+    <option [value]="theme.value">{{ theme.label }}</option>
+    }
+  </select>
+  {{form.theme().value()}}
+</fieldset>
+
+<label class="label mt-4">
+  <input type="checkbox" class="checkbox" [formField]="form.receiveNews" />
+  Receber Novidades Via Newsletter
+</label>
+{{form.receiveNews().value()}}
+
+<fieldset class="fieldset mt-4">
+  <legend class="fieldset-legend">Frequencia De Envio</legend>
+  @for (option of frequencyOptions(); track option.value) {
+  <label class="label">
+    <input type="radio" class="radio" [formField]="form.frequency" [value]="option.value" />
+    {{ option.label }}
+  </label>
+  }
+  {{form.frequency().value()}}
+</fieldset>
