@@ -1,0 +1,31 @@
+<fieldset>
+  <legend class="fieldset">Nome</legend>
+  <input type="text" [formField]="form.personalData.name">
+</fieldset>
+<fieldset>
+  <legend class="fieldset">Email</legend>
+  <input type="text" [formField]="form.personalData.email">
+</fieldset>
+<fieldset>
+  <legend class="fieldset">Email</legend>
+  <input type="email" [formField]="form.personalData.email">
+</fieldset>
+<fieldset>
+  <legend class="fieldset">Cep</legend>
+  <input type="number" [formField]="form.address.zipcode">
+</fieldset>
+<fieldset>
+  <legend class="fieldset">Cidade</legend>
+  <input type="text" [formField]="$any(form.address.city)">
+</fieldset>
+<fieldset>
+  <legend class="fieldset">Rua</legend>
+  <input type="text" [formField]="form.address.street">
+</fieldset>
+<fieldset>
+  <legend class="fieldset">Número</legend>
+  <input type="number" [formField]="form.address.number">
+</fieldset>
+<pre>
+  {{ form().value() | json }}
+</pre>
